@@ -188,14 +188,14 @@ def get_datasets19(seed, data_root='/media/mobarak/data/Datasets/MNMS', no_seg=F
     data_info = pd.read_csv(data_info_fir) 
     patient_ids = data_info['External code']
     patient_ids_vendors = dict( [(patients_ids, data_info['Vendor'][i]) for i, patients_ids in enumerate(data_info['External code'])] )
-    patients_dir_train = glob(os.path.join(data_root,'Training/Labeled_Resampled/**/*_gt.nii.gz'))
-    patients_dir_valid = glob(os.path.join(data_root,'Validation/Labeled_Resampled/**/*_gt.nii.gz'))
-    patients_dir_train.sort()
+    #patients_dir_train = glob(os.path.join(data_root,'Training/Labeled_Resampled/**/*_gt.nii.gz'))
+    patients_dir_valid = glob(os.path.join(data_root,'Labeled_Resampled/**/*_gt.nii.gz'))
+    #patients_dir_train.sort()
     patients_dir_valid.sort()
-    train_dataset = MNMS(patients_dir_train, training=True, normalisation=normalisation, ids_vendors=patient_ids_vendors)
+    #train_dataset = MNMS(patients_dir_train, training=True, normalisation=normalisation, ids_vendors=patient_ids_vendors)
     val_dataset = MNMS(patients_dir_valid, training=False, data_aug=False, normalisation=normalisation, ids_vendors=patient_ids_vendors)
-    bench_dataset = MNMS(patients_dir_valid, training=False, normalisation=normalisation, ids_vendors=patient_ids_vendors)
-    return train_dataset, val_dataset, bench_dataset
+    #bench_dataset = MNMS(patients_dir_valid, training=False, normalisation=normalisation, ids_vendors=patient_ids_vendors)
+    return  val_dataset#, bench_dataset
 
 
 
