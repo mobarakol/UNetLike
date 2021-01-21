@@ -13,7 +13,6 @@ from torch.utils.data.dataset import Dataset
 import torch.nn.functional as F
 from torch.utils.data._utils.collate import default_collate
 
-
 def custom_collate(batch):
     batch = pad_batch_to_max_shape(batch)
     return default_collate(batch)
