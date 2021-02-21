@@ -240,6 +240,13 @@ class Brats(Dataset):
                     #et_present=0,
                     #supervised=True,
                     )
+    
+    @staticmethod
+    def load_nii(path_folder):
+        return sitk.GetArrayFromImage(sitk.ReadImage(str(path_folder)))
+
+    def __len__(self):
+        return len(self.datas)
 
     
 def get_datasets19(seed, data_root='/media/mobarak/data/Datasets/MNMS', no_seg=False, on="train", full=False,
