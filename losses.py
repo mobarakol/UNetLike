@@ -53,3 +53,14 @@ class EDiceLoss(nn.Module):
             dices.append(dice)
             
         return dices
+    
+    def metric_brats(self, inputs, target):
+        dices = []
+        for j in range(target.size(0)):
+            dice = []           
+            dice.append(self.binary_dice(inputs[j]==3, target[j]==3, True))
+            dice.append(self.binary_dice(torch.logical_or(inputs[j]==1, inputs[j]==3), torch.logical_or(target[j]==1, target[j]==3), True))
+            dice.append(self.binary_dice(inputs[j]>0, target[j]>0, True))
+            dices.append(dice)
+            
+        return dices
